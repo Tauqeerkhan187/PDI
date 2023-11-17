@@ -1,0 +1,46 @@
+MAIN:
+    Declare countries as a list of country objects;
+    countries = INPUT data from CSV file "countries_data.csv";
+    
+    Display countries sorted by deathPercentage;
+    Display countries sorted by totalCases;
+    Display countries sorted by totalDeaths;
+    Display countryWithHighestDeathPercentage;
+
+    Prompt user for a continentChoice;
+    filteredCountries = Filter countries list by selected continent;
+
+    Display filtered countriesSortedbyDeathPercentage;  
+    Display filtered countriesSortedbyTotalCases;
+    Display filtered countriesSortedbyTotalDeaths;
+
+READ CSV file and Create countryObjects
+
+// readCountriesFromCSV (fileName):
+        Declare an empty list of countryObjects = countries;
+        Open CSV file "fileName" to READ;
+        
+        FOR each line in file:
+            SKIP the header line;
+            SPLIT the line into parts (Country Name, National Code, etc.);            new countryObjects = parts (Country Name, National Code, etc.);
+            + new countryObjects to countries list;
+        Close the file;
+        Return countries list;
+
+// displaySortedCountriesByDeathPercentage
+    
+    displaySortedCountriesByDeathPercentage (countries list);
+    Sort countriesList in descending order by totalCases;
+    Display each country Name, deathPercentage;
+    
+// Filter Countries by Continent
+
+    filterCountriesByContinent (countriesList, continent);
+        Declare EMPTY LIST for filteredCountries;
+    
+        FOR each country in countriesList:
+        IF country continent = INPUT continent:
+        + country to filteredList;
+        RETURN filteredList;
+END_MAIN
+

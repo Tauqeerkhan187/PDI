@@ -1,0 +1,24 @@
+MAIN
+Prompt user for the number of countries to enter
+Initialize an array of country objects with the specified size 
+For each country:
+    DECLARE countryName, nationalCode, detectedCase, covidDeaths, continent
+    READ countryName;
+    IF countryName = "EMPTY or NOT STRING";
+    THEN OUTPUT "ERROR" and READ again;
+    READ nationalCode;
+    IF nationalCode = "EMPTY OR NOT STRING";
+    THEN OUTPUT "ERROR" and READ nationalCode again;
+    READ covidDeaths;
+    IF CovidDeaths = < 0 OR STRING; 
+    THEN OUTPUT "ERROR" and READ again;
+    IF detectedCase = < 0 OR STRING;
+    OUTPUT "ERROR" and READ again;
+    READ continent; 
+    IF continent != (EU, AF, AS, NA, SA, AU, OT);
+    THEN OUTPUT "ERROR" and READ again;
+    CONVERT data to CSV file;
+    CREATE CSV file;
+    PRINT data to CSV file;
+END_MAIN 
+    
