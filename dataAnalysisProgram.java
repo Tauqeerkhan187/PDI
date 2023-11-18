@@ -30,7 +30,7 @@ public class dataAnalysisProgram
 
         if ("Continent".equalsIgnoreCase(userChoice))
         {
-            System.out.print("Enter continent code for specific analysis (EU, AF, AS, NA, SA, AU, OT): ");
+            System.out.print("Enter continent code for specific analysis (EU, AF, AS, ME, NA, SA, AU, OT): ");
             String continent = scanner.nextLine().toUpperCase();
             System.out.println("Continent Analysis:");
             performAnalysis(filterByContinent(countries, continent));
@@ -216,7 +216,7 @@ class Country
       return String.join(",", name, nationalCode, String.valueOf(cases), String.valueOf(deaths), continent);
     } 
 
-    public String toStirng()
+    public String toString()
     {
         return name + "(" + nationalCode + ") - Cases: " + cases + ", Deaths: " + deaths + ", Death Percentage: " + String.format("%.2f", getDeathPercentage()) + "%"; 
     }

@@ -26,7 +26,7 @@ import java.util.Scanner;
           System.out.print("Deaths from COVID: ");
           long deaths = getValidLong(scanner, "");
           System.out.print("Continent: ");
-          String continent = getValidContinent(scanner, "Continent (EU, AF, AS, NA, SA, AU, OT):");
+          String continent = getValidContinent(scanner, "Continent (EU, AF, AS, ME, NA, SA, AU, OT):");
 
           countries[i] = new Country(name, nationalCode, cases, deaths, continent);
         }
@@ -113,12 +113,11 @@ import java.util.Scanner;
           System.out.println(prompt);
           String input = scanner.nextLine().toUpperCase();
           if (input.equals("EU") || input.equals("AF") || input.equals("AS") ||
-          input.equals("NA") || input.equals("SA") || input.equals("AU") ||
-          input.equals("OT")) 
+          input.equals("ME") || input.equals("NA") || input.equals("SA") || input.equals("AU") || input.equals("OT")) 
           {
             return input;
           }
-          System.out.println("Invalid continent. Please enter one of the following: EU, AF, AS, NA, SA, AU, OT.");
+          System.out.println("Invalid continent. Please enter one of the following: EU, AF, AS, ME, NA, SA, AU, OT.");
         }
     }
 
