@@ -7,26 +7,41 @@ import java.util.Scanner;
     {
         public static void main(String[] args) 
         {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter the number of countries:");
+          Scanner scanner = new Scanner(System.in);
+          System.out.println("Welcome to the WHO Data Entry Program");
+          System.out.println("How many countries' data are you looking to enter?");
             int numCountries = getValidNumber(scanner);
 
             Country[] countries = new Country[numCountries];
 
         for (int i = 0; i < numCountries; i++) 
         {
-          System.out.println("Enter details for country " + (i + 1) + ":");
-
-          String name = getValidString(scanner, "Country Name:", false);
-          String nationalCode = getValidString(scanner, "National Code:", false);
-          long cases = getValidLong(scanner, "Detected COVID cases:");
-          long deaths = getValidLong(scanner, "Deaths from COVID:");
+          System.out.println("Please enter the data:");
+          System.out.print("Country Name:");
+          String name = getValidString(scanner, "", false);
+          System.out.print("National code: ");
+          String nationalCode = getValidString(scanner, "", false);
+          System.out.print("Detected COVID cases: ");
+          long cases = getValidLong(scanner, "");
+          System.out.print("Deaths from COVID: ");
+          long deaths = getValidLong(scanner, "");
+          System.out.print("Continent: ");
           String continent = getValidContinent(scanner, "Continent (EU, AF, AS, NA, SA, AU, OT):");
 
           countries[i] = new Country(name, nationalCode, cases, deaths, continent);
         }
 
-        writeDataToCSV(countries);
+        System.out.println("The current data looks like this:");
+        for (Country country : countries)
+        {
+            System.out.println(country);
+        }
+    
+        System.out.println("What would you like to name your CSV file? ");
+        String csvFileName = scanner.nextLine();
+        writeDataToCSV(countries, csvFileName);
+        System.out.println("Thank you and have a great day.");
+    
         scanner.close();
     }
 
@@ -107,7 +122,7 @@ import java.util.Scanner;
         }
     }
 
-    private static void writeDataToCSV(Country[] countries) 
+    private static void writeDataToCSV(Country[] countries, String fileName) 
     {
         try (PrintWriter writer = new PrintWriter(new FileWriter("countries_data.csv"))) 
         {
@@ -116,7 +131,7 @@ import java.util.Scanner;
             {
                 writer.println(country.toCSVFormat());
             }    
-    System.out.println("Data successfully written to countries_data.csv");
+    System.out.println("Data successfully written to " + fileName);
         } 
         catch (IOException e) 
         {
