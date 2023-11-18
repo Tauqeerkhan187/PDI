@@ -46,12 +46,8 @@ public class dataAnalysisProgram
         }
         while (!"Yes".equalsIgnoreCase(userChoice));
         
-        System.out.println("\nEnter continent code for specific analysis (EU, AF, AS, NA, SA, AU, OT):");
-        String continent = scanner.nextLine().toUpperCase();
-        performAnalysis(filterByContinent(countries, continent));
-    
         scanner.close();
-    }
+ }
 
     private static Country[] readDataFromCSV(String fileName)
     {
