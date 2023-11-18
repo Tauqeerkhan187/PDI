@@ -19,7 +19,6 @@ public class dataAnalysisProgram
             System.out.println("No data to analyze.");
             return;
         }
-
         
         String userChoice;
 
@@ -218,7 +217,7 @@ class Country
 
     public String toString()
     {
-        return name + "(" + nationalCode + ") - Cases: " + cases + ", Deaths: " + deaths + ", Death Percentage: " + String.format("%.2f", getDeathPercentage()) + "%"; 
+        return name + "(" + nationalCode + ") - Cases: " + cases + ", Deaths: " + deaths + ", Continent: " + continent + ", Death Percentage: " + String.format("%.2f", getDeathPercentage()) + "%"; 
     }
 
 }            
