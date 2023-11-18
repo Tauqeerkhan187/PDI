@@ -6,20 +6,46 @@ public class dataAnalysisProgram
 {
     public static void main(String[] args)
     {
-        String fileName = "countries_data.csv";
-        Country[] countries = readDataFromCSV(fileName);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to the WHO Analysis Program :-)");
         
+        System.out.println("Enter the name of the file containing the data: ");
+        String fileName = scanner.nextLine();
+        Country[] countries = readDataFromCSV(fileName);
+    
+    
         if(countries.length == 0)
         {
             System.out.println("No data to analyze.");
             return;
         }
 
-
-        System.out.println("Overall Analysis:");
-        performAnalysis(countries);
         
-        Scanner scanner = new Scanner(System.in);
+        String userChoice;
+
+        do 
+        {
+          System.out.println("An overall analysis or a Continent analysis? (Overall/Continent)");
+          userChoice = scanner.nextLine();
+
+        if ("Continent".equalsIgnoreCase(userChoice))
+        {
+            System.out.print("Enter continent code for specific analysis (EU, AF, AS, NA, SA, AU, OT): ");
+            String continent = scanner.nextLine().toUpperCase();
+            System.out.println("Continent Analysis:");
+            performAnalysis(filterByContinent(countries, continent));
+        }
+        else if ("Overall".equalsIgnoreCase(userChoice))
+        {
+            System.out.println("Overall Analysis:");
+            performAnalysis(countries);
+        }
+
+        System.out.println("Would you like to exit? (Yes/No)");
+        userChoice  = scanner.nextLine();
+        }
+        while (!"Yes".equalsIgnoreCase(userChoice));
+        
         System.out.println("\nEnter continent code for specific analysis (EU, AF, AS, NA, SA, AU, OT):");
         String continent = scanner.nextLine().toUpperCase();
         performAnalysis(filterByContinent(countries, continent));
