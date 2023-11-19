@@ -1,46 +1,32 @@
 MAIN:
-    Declare countries as a list of country objects;
-    countries = INPUT data from CSV file "countries_data.csv";
-    
-    Display countries sorted by deathPercentage;
-    Display countries sorted by totalCases;
-    Display countries sorted by totalDeaths;
-    Display countryWithHighestDeathPercentage;
+    PRINT "Welcome to the WHO Analysis Program";
+    PROMPT "Enter the name of the file containing the data:";
+    READ fileName;
 
-    Prompt user for a continentChoice;
-    filteredCountries = Filter countries list by selected continent;
+    READ data from CSV file into an array of Country objects;
+        IF no data is found;
+         PRINT "No data to analyze.";
+         EXIT program;
+        END IF
 
-    Display filtered countriesSortedbyDeathPercentage;  
-    Display filtered countriesSortedbyTotalCases;
-    Display filtered countriesSortedbyTotalDeaths;
+        DO
+         PROMPT "An overall analysis or a Continent analysis? (Overall/Continent)";
+         READ userChoice;
 
-READ CSV file and Create countryObjects
+            IF userChoice is "Continent"
+                PROMPT "Enter continent code for specific analysis (EU, AF, AS, ME, NA, SA, AU, OT):";
+                READ continent;
+                OUTPUT "Continent Analysis:";
+                Perform analysis on countries filtered by continent;
 
-// readCountriesFromCSV (fileName):
-        Declare an empty list of countryObjects = countries;
-        Open CSV file "fileName" to READ;
-        
-        FOR each line in file:
-            SKIP the header line;
-            SPLIT the line into parts (Country Name, National Code, etc.);            new countryObjects = parts (Country Name, National Code, etc.);
-            + new countryObjects to countries list;
-        Close the file;
-        Return countries list;
+            ELSE IF userChoice is "Overall"
+                PRINT "Overall Analysis:";
+                Perform analysis on all countries;
+            END IF
 
-// displaySortedCountriesByDeathPercentage
-    
-    displaySortedCountriesByDeathPercentage (countries list);
-    Sort countriesList in descending order by totalCases;
-    Display each country Name, deathPercentage;
-    
-// Filter Countries by Continent
+            INPUT "Would you like to exit? (Yes/No)";
+            READ userChoice;
+        WHILE userChoice is not "Yes";
 
-    filterCountriesByContinent (countriesList, continent);
-        Declare EMPTY LIST for filteredCountries;
-    
-        FOR each country in countriesList:
-        IF country continent = INPUT continent:
-        + country to filteredList;
-        RETURN filteredList;
 END_MAIN
 
