@@ -7,14 +7,15 @@ import java.util.Scanner;
     {
         public static void main(String[] args) 
         {
+          // Scanner to read input from user.
           Scanner scanner = new Scanner(System.in);
           System.out.println("Welcome to the WHO Data Entry Program");
           System.out.println("How many countries' data are you looking to enter?");
-            int numCountries = getValidNumber(scanner);
+            int numCountries = getValidNumber(scanner); // get number of countries to enter data for.
 
-            Country[] countries = new Country[numCountries];
+            Country[] countries = new Country[numCountries]; // array to hold objects.
 
-        for (int i = 0; i < numCountries; i++) 
+        for (int i = 0; i < numCountries; i++) // for loop to get data
         {
           System.out.println("Please enter the data:");
           System.out.print("Country Name:");
@@ -30,20 +31,26 @@ import java.util.Scanner;
 
           countries[i] = new Country(name, nationalCode, cases, deaths, continent);
         }
+         
+        // Display the data entered by the user.
 
         System.out.println("The current data looks like this:");
         for (Country country : countries)
         {
             System.out.println(country);
         }
+        
+        // Prompt user for name of CSV file
     
         System.out.println("What would you like to name your CSV file? ");
         String csvFileName = scanner.nextLine();
         writeDataToCSV(countries, csvFileName);
         System.out.println("Thank you and have a great day.");
     
-        scanner.close();
+        scanner.close(); //Closing Scanner
     }
+
+    // Method for getting valid integer from user.
 
     private static int getValidNumber(Scanner scanner) 
     {
@@ -70,6 +77,8 @@ import java.util.Scanner;
       }
     }
 
+    // Method to get valid String from user.
+
     private static String getValidString(Scanner scanner, String prompt, boolean allowDigits) 
     {
       String input;
@@ -85,6 +94,8 @@ import java.util.Scanner;
         System.out.println("Invalid input. Please enter a valid string.");
       }
     }
+   
+    // Method for getting valid long from user.
 
     private static long getValidLong(Scanner scanner, String prompt) 
     {
@@ -107,7 +118,10 @@ import java.util.Scanner;
        }
     }
 
-    private static String getValidContinent(Scanner scanner, String prompt)     {   
+    // Method for valid continent.
+    
+    private static String getValidContinent(Scanner scanner, String prompt)     
+    {   
         while (true) 
         {
           System.out.println(prompt);
@@ -120,24 +134,30 @@ import java.util.Scanner;
           System.out.println("Invalid continent. Please enter one of the following: EU, AF, AS, ME, NA, SA, AU, OT.");
         }
     }
-
+    
+    //Method to Print data of countries into CSV file.
+    
     private static void writeDataToCSV(Country[] countries, String fileName) 
     {
-        try (PrintWriter writer = new PrintWriter(new FileWriter("countries_data.csv"))) 
-        {
-            writer.println("Country Name,National Code,Detected COVID Cases,Deaths from COVID,Continent");
+      try (PrintWriter writer = new PrintWriter(new FileWriter("countries_data.csv"))) 
+      {
+       writer.println("Country Name,National Code,Detected COVID Cases,Deaths from COVID,Continent");
+          
             for (Country country : countries) 
             {
                 writer.println(country.toCSVFormat());
             }    
-    System.out.println("Data successfully written to " + fileName);
-        } 
+        
+        System.out.println("Data successfully written to " + fileName);
+      } 
         catch (IOException e) 
         {
         System.err.println("Error writing to CSV file: " + e.getMessage());
         }
     }
 }
+
+// Country class with fields, constrcutors and methods.
 
     class Country 
     {
@@ -146,6 +166,8 @@ import java.util.Scanner;
     private long cases;
     private long deaths;
     private String continent;
+
+    // Constructor for new country object
 
     public Country(String name, String nationalCode, long cases, long deaths, String continent) 
     {
@@ -156,65 +178,93 @@ import java.util.Scanner;
         this.continent = continent;
     }
 
+    // Getter for country name
+
     public String getName() 
     {
         return name;
     }
+
+    // Setter for country name
 
     public void setName(String name) 
     {
         this.name = name;
     }
 
+    // getter for National code
+
     public String getNationalCode() 
     {
         return nationalCode;
     }
 
+    // Setter for National code
+
     public void setNationalCode(String nationalCode) 
     {
         this.nationalCode = nationalCode;
     }
-
+    
+    // Getter for detected cases
+    
     public long getCases() 
     {
         return cases;
     }
+
+    // Setter for detected cases
 
     public void setCases(long cases) 
     {
         this.cases = cases;
     }
 
+    // Getter for deaths
+
     public long getDeaths() 
     {
         return deaths;
     }
+    
+    // Setter for deaths
 
     public void setDeaths(long deaths) 
     {
         this.deaths = deaths;
     }
 
+    // Getter for continent
+
     public String getContinent() 
     {
         return continent;
     }
+
+    // Setter for continent
 
     public void setContinent(String continent) 
     {
         this.continent = continent;
     }
 
+    // Method to return a CSV format string of a Country's data
+
     public String toCSVFormat() 
     {
+        // Concatenate fields with commas for CSV
+
         return String.join(",", name, nationalCode, String.valueOf(cases), String.valueOf(deaths), continent);
     }
+
+    // Method to calculate and return death percentage
     
     public double getDeathPercentage()
     {
         if(cases > 0)
         {
+            // Calculate death percentage; confirm no divison by zero
+            
             return (double) deaths / cases * 100;
         }
         return 0;
