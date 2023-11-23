@@ -169,12 +169,22 @@ import java.util.Scanner;
 
     class Country 
     {
-    private String name;
-    private String nationalCode;
-    private long cases;
-    private long deaths;
-    private String continent;
+        private String name;
+        private String nationalCode;
+        private long cases;
+        private long deaths;
+        private String continent;
 
+    //Default constructor
+    public Country ()
+    {
+        this.name = "";
+        this.nationalCode = "";
+        this.cases = 0;
+        this.deaths = 0;
+        this.continent = "";
+    }
+    
     // Constructor for new country object
 
     public Country(String name, String nationalCode, long cases, long deaths, String continent) 
@@ -184,6 +194,15 @@ import java.util.Scanner;
         this.cases = cases;
         this.deaths = deaths;
         this.continent = continent;
+    }
+
+    public Country(Country other)
+    {
+        this.name = other.name;
+        this.nationalCode = other.nationalCode;
+        this.cases = other.cases;
+        this.deaths = other.deaths;
+        this.continent = other.continent;
     }
 
     // Getter for country name
