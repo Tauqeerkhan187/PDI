@@ -1,3 +1,8 @@
+/********************************************************************************
+* Author: Tauqeer Khan                                                          *
+* Purpose: To take input from the user, validate it and write it in a csv file. *
+* Date: 5/11/2023                                                               *
+*********************************************************************************/ 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -99,12 +104,14 @@ import java.util.Scanner;
 
     private static long getValidLong(Scanner scanner, String prompt) 
     {
+       long number;
+
        while (true) 
        {
          System.out.println(prompt);
          try 
          {
-            long number = Long.parseLong(scanner.nextLine());
+             number = Long.parseLong(scanner.nextLine());
             if (number >= 0) 
             {
               return number;
@@ -120,12 +127,13 @@ import java.util.Scanner;
 
     // Method for valid continent.
     
-    private static String getValidContinent(Scanner scanner, String prompt)     
-    {   
+    private static String getValidContinent(Scanner scanner, String prompt)     {  
+        String input;
+ 
         while (true) 
         {
           System.out.println(prompt);
-          String input = scanner.nextLine().toUpperCase();
+          input = scanner.nextLine().toUpperCase();
           if (input.equals("EU") || input.equals("AF") || input.equals("AS") ||
           input.equals("ME") || input.equals("NA") || input.equals("SA") || input.equals("AU") || input.equals("OT")) 
           {
@@ -254,19 +262,28 @@ import java.util.Scanner;
     {
         // Concatenate fields with commas for CSV
 
-        return String.join(",", name, nationalCode, String.valueOf(cases), String.valueOf(deaths), continent);
+        String csvFormat =  String.join(",", name, nationalCode, String.valueOf(cases), String.valueOf(deaths), continent);
+
+        return csvFormat;
     }
 
     // Method to calculate and return death percentage
     
     public double getDeathPercentage()
     {
+        double deathPercentage = 0;
+
         if(cases > 0)
         {
             // Calculate death percentage; confirm no divison by zero
             
-            return (double) deaths / cases * 100;
+            deathPercentage = (double) deaths / cases * 100;
         }
-        return 0;
+        return deathPercentage;
     }
-}
+
+    public String toString() 
+    {
+        return name + " (" + nationalCode + ") - Cases: " + cases + " , Deaths: " + deaths + ", Death Percentage: " + String.format("%.2f", getDeathPercentage()) + "%";
+    }
+}   
