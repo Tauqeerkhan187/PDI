@@ -9,6 +9,11 @@ import java.util.Scanner;
 
 public class dataAnalysisProgram
 {
+    /** Main method for analysis.
+      * IMPORT: args
+      * EXPORT: NONE.
+     **/
+
     public static void main(String[] args)
     {
         // Scanner for reading Input
@@ -66,8 +71,11 @@ public class dataAnalysisProgram
         scanner.close();
  }
 
-    // Method to READ data from CSV file.
-    
+    /** Method to READ data from CSV file.
+      * IMPORT: fileName (String name of the CSV file)
+      * EXPORT: Country[] (Array of country objects).
+     **/
+
     private static Country[] readDataFromCSV(String fileName)
     {
         try (Scanner fileScanner = new Scanner(new File(fileName)))
@@ -96,7 +104,10 @@ public class dataAnalysisProgram
         }
     }
 
-    // Method to perform analysis on data.
+    /** Method to perform analysis on array of Country objects.
+      * IMPORT: countries (Array of Country objects).
+      * EXPORT: NONE.
+     **/ 
 
     private static void performAnalysis(Country[] countries)
     {
@@ -119,7 +130,10 @@ public class dataAnalysisProgram
 
     }
 
-    // Sort countries by death percentage using insertion sort
+    /** Sort countries by death percentage using insertion sort.
+      * IMPORT: countries (Array of Country objects).
+      * EXPORT: NONE.
+     **/
 
     private static void sortCountriesByDeathPercentage(Country[] countries)
     {
@@ -139,7 +153,10 @@ public class dataAnalysisProgram
         }
     }
 
-    // Sort countries by total cases using insertion sort.
+    /** Sort countries by total cases using insertion sort.
+      * IMPORT: countries (Array of Country objects).
+      * EXPORT: NONE.
+     **/
     
     private static void sortCountriesByTotalCases(Country[] countries)
     {
@@ -159,7 +176,10 @@ public class dataAnalysisProgram
         }
     }
     
-    // Sort countries by total deaths using insertion sort
+    /** Sort countries by total deaths using insertion sort.
+      * IMPORT: countries (Array of Country objects).
+      * EXPORT: NONE.
+     **/
 
     private static void sortCountriesByTotalDeaths(Country[] countries) 
     {
@@ -179,8 +199,11 @@ public class dataAnalysisProgram
         }
     }
 
-    // Method for displaying all countries in array.
-
+    /** Method for displaying data of all countries in array.
+      * IMPORT: countries (Array of Country objects).
+      * EXPORT: NONE.
+     **/
+ 
     private static void displayCountries(Country[] countries)
     {
         for(Country country : countries)
@@ -192,7 +215,10 @@ public class dataAnalysisProgram
         }
     }
 
-    // Filter the array of countries based on continent.
+    /** Filter the array of countries based on specified continent.
+      * IMPORT: countries (Array of Country objects), continent (Stringcontinent code).
+      * EXPORT: Country[] (Filtered array of country objects).
+     **/
 
     private static Country[] filterByContinent(Country[] countries, String continent)
     {
@@ -212,7 +238,10 @@ public class dataAnalysisProgram
         return trimCountryArray(filteredCountries, index);
     }
 
-    // Trim array to size of actual data
+    /** Trims array to size of actual data.
+      * IMPORT: countries (Array of Country objects), size (int size to trim to).
+      * EXPORT: Country[] (Trimmed array of country objects).
+     **/
     
     private static Country[] trimCountryArray(Country[] countries, int size)
     {
@@ -231,7 +260,10 @@ class Country
     private long deaths;
     private String continent;
 
-    // Default constructor
+    /** Default constructor. Intializes a new Country object with default values.
+      * IMPORT: NONE.
+      * EXPORT: NONE.
+     **/
 
     public Country()
     {
@@ -242,7 +274,10 @@ class Country
         this.continent = "";
     }
     
-    // Constructor for Country class
+    /** Constructor with parameters. Intializes a new country object with provided values.
+      * IMPORT: name (String), nationalCode (String), cases (long), deaths (long), continent (String). 
+      * EXPORT: NONE.
+     **/
 
     public Country(String name, String nationalCode, long cases, long deaths, String continent)
     {
@@ -253,7 +288,10 @@ class Country
         this.continent = continent;
     }
 
-    // Copy constructor
+    /** Copy constructoR. Creates new country object that is a copy of the existing one.
+      * IMPORT: other (Country object to copy).
+      * EXPORT: NONE.
+      */
 
     public Country(Country other)
     {
@@ -271,7 +309,10 @@ class Country
         return continent;
     }
 
-    // Calculate and return death Percentage.
+    /** Calculate and return death Percentage.
+      * IMPORT: NONE.
+      * EXPORT: double (The death percentage).
+     **/
 
     public double getDeathPercentage()
     {
@@ -292,14 +333,21 @@ class Country
         return deaths;
     }
 
-    // Convert data to CSV format
+    /** returns the country's data in CSV foramt.
+      * IMPORT: NONE.
+      * EXPORT: String (Country's data in CSV format).
+     **/
 
     public String toCSVFormat()
     {
       return String.join(",", name, nationalCode, String.valueOf(cases), String.valueOf(deaths), continent);
     } 
 
-    // Override toString to provide a formatted string representation of country objects
+    /** Provides a string representation of the country object. 
+      * IMPORT: NONE.
+      * EXPORT: String (String representation of the country object).
+      * Override toString to provide a formatted string representation of country objects.
+     **/
     
     @Override
 

@@ -9,7 +9,12 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
     public class dataInputProgram 
-    {
+    {  /**
+        * MAIN method.
+        * IMPORT: args
+        * EXPORT: NONE.
+        */
+
         public static void main(String[] args) 
         {
           // Scanner to read input from user.
@@ -55,7 +60,11 @@ import java.util.Scanner;
         scanner.close(); //Closing Scanner
     }
 
-    // Method for getting valid integer from user.
+    /** Method for getting valid integer from user.
+      * Prompt valid positive int from user
+      * IMPORT: scanner (for user input).
+      * EXPORT: valid positive int.
+      */
 
     private static int getValidNumber(Scanner scanner) 
     {
@@ -82,8 +91,10 @@ import java.util.Scanner;
       }
     }
 
-    // Method to get valid String from user.
-
+    /** Method to get valid String from user.
+      * IMPORT: scanner (for user input), prompt for String message.
+      * EXPORT: String (Valid string).
+      */
     private static String getValidString(Scanner scanner, String prompt, boolean allowDigits) 
     {
       String input;
@@ -100,8 +111,10 @@ import java.util.Scanner;
       }
     }
    
-    // Method for getting valid long from user.
-
+    /** Method for getting valid long from user.
+      * IMPORT: scanner for user input, prompt fro string message.
+      * EXPORT: long (A valid positive long number).
+      */
     private static long getValidLong(Scanner scanner, String prompt) 
     {
        long number;
@@ -125,8 +138,11 @@ import java.util.Scanner;
        }
     }
 
-    // Method for valid continent.
-    
+    /** Method for valid continent.
+      * IMPORT: scanner for user input, prompt for string message.
+      * EXPORT: String (a valid continent).
+     **/
+ 
     private static String getValidContinent(Scanner scanner, String prompt)     {  
         String input;
  
@@ -143,7 +159,10 @@ import java.util.Scanner;
         }
     }
     
-    //Method to Print data of countries into CSV file.
+    /** Method to Print data of countries into CSV file.
+      * IMPORT: countries (Array of countries objects), fileName (String name)
+      * EXPORT: NONE.
+     **/
     
     private static void writeDataToCSV(Country[] countries, String fileName) 
     {
@@ -175,7 +194,11 @@ import java.util.Scanner;
         private long deaths;
         private String continent;
 
-    //Default constructor
+    /** Default constructor, initializes a new country object with default value.
+      * IMPORT: NONE.
+      * EXPORT: NONE.
+     **/
+
     public Country ()
     {
         this.name = "";
@@ -185,7 +208,10 @@ import java.util.Scanner;
         this.continent = "";
     }
     
-    // Constructor for new country object
+    /** Constructor with parameters. Intializes new country object with given values
+      * IMPORT: name (String), nationalCode (String), cases (long), deaths (long), continent (String).
+      * EXPORT: NONE.
+     **/
 
     public Country(String name, String nationalCode, long cases, long deaths, String continent) 
     {
@@ -195,6 +221,11 @@ import java.util.Scanner;
         this.deaths = deaths;
         this.continent = continent;
     }
+
+    /** Copy constructor. Creates new country object that is a copy of an existing one.
+      * IMPORT: other (Country object to copy).
+      * EXPORT: NONE.
+     **/
 
     public Country(Country other)
     {
